@@ -8,15 +8,19 @@ class LyricSearch:
         self.url     = "http://api.lyricsnmusic.com/songs"
 
     def search_by_lyrics(self, lyrics):
-        return requests.get(self.url,
+        return json.loads(requests.get(self.url,
                             params={"api_key": self.api_key,
-                                    "lyrics": lyrics})
+                                    "lyrics": lyrics}).text)
 
-def _search_test():
+def __search_test():
     lyr_search = LyricSearch()
     lyrics = raw_input('Enter some lyrics to search: ')
-    track = json.loads(lyr_search.search_by_lyrics(lyrics).text)[0]
-    print track
+    try:
+        track = lyr_search.search_by_lyrics(lyrics)[0]
+    except IndexError:
+        print "No tracks matched your search"
+    else:
+        print track
 
 if __name__ == "__main__":
-    _search_test()
+    __search_test()
