@@ -88,8 +88,6 @@
 	  }
 	</style>
 	<h1 class="center" id="headline">
-<div id="info">
-</div>
 	<div class="right">
 	  <button id="start_button" onclick="startButton(event)">
 	    <img id="start_img" src="mic.gif" alt="Start"></button>
@@ -97,9 +95,9 @@
 	<div id="results">
 	  <span id="final_span" class="final"></span>
 	  <span id="interim_span" class="interim"></span>
-	  <p>
 	</div>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
-	<script src="{{ url_for('static', filename='index.js') }}"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../static/index.js"></script>
+	<!--<script src="{{ url_for('static', filename='index.js') }}"/>-->
 	</body>
 </html>
