@@ -1,5 +1,3 @@
-<script src="//www.rdio.com/api/api.js?client_id=VbZ4G9Z-2iTpsUomxNh68w"></script>
-
 R.ready(function() {
 	R.request({method: "search", content: {
 			type: "track",
