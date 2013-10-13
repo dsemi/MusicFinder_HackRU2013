@@ -19,7 +19,7 @@
                   for (var i = 0; i < length; i++) {
                     R.player.queue.add({source: response.result.results[i].key});
                   }
-                  R.player.play();
+                  R.player.nextSource();
                 },
                 error: function(response) {
                         console.log("error: " + response.message);
