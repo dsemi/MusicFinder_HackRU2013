@@ -10,14 +10,15 @@ app.searcher = LyricSearch()
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('play.html')
+    return render_template('play.html', trackData={'title': 'Thunderstruck', 'artist': {'name': 'ACDC'}})
     # if request.method == 'GET':
     #     return render_template('index.html')
     # elif request.method == 'POST':
     #     return render_template('helper.html', trackData=search_for_song(request.form.get('lyrics','')))
 
-
-    return render_template('js/helper.js', trackData={'title': 'Thunderstruck', 'artist': {'name': 'ACDC'}})
+@app.route('/helper.html')
+def helper():
+    return render_template('helper.html')
 
 def search_for_song(input):
     return app.searcher.search_by_lyrics(input)
