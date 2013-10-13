@@ -11,12 +11,13 @@
                 method: "search",
                 content: {
                         types: "Track",
-                        count: 1,
+                        count: 10,
                         query: trackName + ", " + artist
                 },
                 success: function(response) {
                         var top = response.result.results[0];
-                        console.log(top.name + " by " + top.artist);
+                        for (var song in response.result.results[])
+                          R.player.queue.on("add", function("Track", collection, song);
                         R.player.play({source: top.key});
                 },
                 error: function(response) {
