@@ -165,8 +165,11 @@
 	    	data: JSON.stringify(transJSON, null, "\t"),
 	    	success: function(response) {
 				alert("success");
+	    	},
+	    	error: function(resp) {
+	    		console.log(resp);
 	    	}
-	    })
+	    });
 	  };
 	}
 
