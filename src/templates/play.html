@@ -2,7 +2,32 @@
 <html>
   <head>
     <script src="//www.rdio.com/api/api.js?client_id=VbZ4G9Z-2iTpsUomxNh68w"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='helper.js') }}"></script>
+    <script type="text/javascript">
+      var trackName = '{{ trackData["title"] }}';
+      var artist = '{{ trackData["artist"]["name"] }}';
+
+      R.ready(function() {
+        console.log(artist);
+        R.request({
+                method: "search",
+                content: {
+                        types: "Track",
+                        count: 1,
+                        query: trackName + ", " + artist
+                },
+                success: function(response) {
+                        var top = response.result.results[0];
+                        console.log(top.name + " by " + top.artist);
+                        console.log(top.key);
+                        R.player.play({source: top.key});
+                },
+                error: function(response) {
+                        console.log("error: " + response.message);
+                }
+        });
+      });
+
+    </script>
   </head>
   <body>
   </body>

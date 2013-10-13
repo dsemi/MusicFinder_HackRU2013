@@ -10,7 +10,7 @@ app.searcher = LyricSearch()
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('play.html', trackData={'title': 'Thunderstruck', 'artist': {'name': 'ACDC'}})
+    return render_template('play.html', trackData={'title': 'Sweet child o mine', 'artist': {'name': 'guns n roses'}})
     # if request.method == 'GET':
     #     return render_template('index.html')
     # elif request.method == 'POST':
