@@ -11,17 +11,12 @@
                 method: "search",
                 content: {
                         types: "Track",
-                        count: 10,
+                        count: 1,
                         query: trackName + ", " + artist
                 },
                 success: function(response) {
-                  var length = response.result.results;
-                  R.player.queue.clear();
-                  for (var i = 0; i < length; i++) {
-                    R.player.queue.add(response.result.results[i].key);
-                  }
-                  R.player.nextSource();
-                  R.player.queue.play(0);
+                  var top = response.result.results[0];
+                  R.player.play({source: top.key});
                 },
                 error: function(response) {
                         console.log("error: " + response.message);
