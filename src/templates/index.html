@@ -160,7 +160,7 @@
 	    };
 	    $.ajax({
 	    	type: 'POST',
-	    	url: window.location,
+	    	url: "{{ url_for('/') }}",
 	    	dataType: 'json',
 	    	data: transJSON,
 	    	success: function(response) {
