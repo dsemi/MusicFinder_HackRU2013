@@ -1,14 +1,26 @@
 #!/usr/bin/python2
 
-from flask import Flask
+from flask import Flask, render_template, request, url_for
 from werkzeug.contrib.fixers import ProxyFix
+from search.lyric_search import LyricSearch
 app = Flask(__name__)
+app.debug = True
 
-@app.route("/")
+app.searcher = LyricSearch()
+
+@app.route('/', methods=['GET','POST'])
 def index():
-    return "Hello World!"
+    if request.method == 'GET':
+        print 'helper.html'
+        return render_template('index.html')
+    elif request.method == 'POST':
+        return render_template('helper.html')
+
+
+def search_for_song(input):
+    return app.searcher.search_by_lyrics(input)
 
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
