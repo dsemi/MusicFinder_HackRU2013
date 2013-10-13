@@ -156,18 +156,15 @@
 	      showButtons('inline-block');
 	    }
 	    var transJSON = {
-	    	"lyrics": final_transcript
+	    	lyrics: final_transcript
 	    };
 	    $.ajax({
 	    	type: 'POST',
-	    	url: "{{ url_for('/') }}",
+	    	url: window.location.origin,
 			dataType: 'json',
-	    	data: JSON.stringify(transJSON, null, "\t"),
-	    	success: function(response) {
+	    	data: JSON.stringify(transJSON),
+	    	success: function(response) {	
 				alert("success");
-	    	},
-	    	error: function(resp) {
-	    		console.log(resp);
 	    	}
 	    });
 	  }
