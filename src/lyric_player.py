@@ -11,10 +11,9 @@ app.searcher = LyricSearch()
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'GET':
-        print 'helper.html'
         return render_template('index.html')
     elif request.method == 'POST':
-        return render_template('helper.html')
+        return render_template('helper.html', trackData=search_for_song(request.form.get('lyrics','')))
 
 
 def search_for_song(input):
