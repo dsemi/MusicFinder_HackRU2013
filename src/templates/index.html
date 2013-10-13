@@ -161,10 +161,10 @@
 	    $.ajax({
 	    	type: 'POST',
 	    	url: "{{ url_for('/') }}",
-	    	dataType: 'json',
-	    	data: transJSON,
+			dataType: 'json',
+	    	data: JSON.stringify(transJSON, null, "\t"),
 	    	success: function(response) {
-	    		alert("success")
+				alert("success");
 	    	}
 	    })
 	  };
