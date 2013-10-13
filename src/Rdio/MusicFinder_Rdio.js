@@ -1,5 +1,6 @@
-R.ready(function() {
-	R.request({method: "search", content: {
+var rdio = require("http://www.rdio.com/api/api.js?client_id=VbZ4G9Z-2iTpsUomxNh68w");
+rdio.ready(function() {
+	rdio.request({method: "search", content: {
 			type: "track",
 			count: 1,
 			query: trackName
@@ -12,5 +13,5 @@ R.ready(function() {
 			console.log("error: " + response.message);
 		}
 	});
-	R.player.play({source: top.key});
+	rdio.player.play({source: top.key});
 });
