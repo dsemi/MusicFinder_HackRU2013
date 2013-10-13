@@ -16,11 +16,12 @@
                 },
                 success: function(response) {
                   var length = response.result.results;
+                  R.player.queue.clear();
                   for (var i = 0; i < length; i++) {
                     R.player.queue.add(response.result.results[i].key);
                   }
                   R.player.nextSource();
-                  R.player.play();
+                  R.player.queue.play(0);
                 },
                 error: function(response) {
                         console.log("error: " + response.message);
