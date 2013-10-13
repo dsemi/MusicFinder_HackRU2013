@@ -59,7 +59,7 @@ if (!('webkitSpeechRecognition' in window)) {
     	type: 'POST',
     	url: '/',
     	dataType: 'text',
-    	data: final_transcript
+    	data: final_transcript,
     	success: function(response) {
     	}
     })
