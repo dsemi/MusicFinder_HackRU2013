@@ -18,7 +18,6 @@
                         var top = response.result.results[0];
                         for (var song in response.result.results)
                           R.player.queue.add(song.key);
-                          });
                         R.player.play({source: top.key});
                 },
                 error: function(response) {
