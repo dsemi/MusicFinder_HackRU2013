@@ -8,43 +8,7 @@
 		<h1>Welcome to Music Finder!</h1>
 		
 		<p>Music Finder listens to your voice and finds the song based on the lyrics you tell it.</p>
-		
 		<input type="file" accept="audio/*; capture=microphone">
-		
-		<script>
-		
-		function hasGetUserMedia() {
-  			// Note: Opera is unprefixed.
-  			return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-            		navigator.mozGetUserMedia || navigator.msGetUserMedia);
-		}
-
-		if (hasGetUserMedia()) {
-  			// Good to go!
-		} else {
-  			alert('getUserMedia() is not supported in your browser');
-		}
-		
-  		var onFail = function(e) {
-    			console.log('Audio input is not working for your browser :(!', e);
-  		};
-  			
-  		window.URL = window.URL || window.webkitURL;
-		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-		var context = new window.webkitAudioContext();
-
-		navigator.webkitGetUserMedia({audio: true}, function(stream) {
-  			var microphone = context.createMediaStreamSource(stream);
-  			var filter = context.createBiquadFilter();
-
-  			// microphone -> filter -> destination.
-  			microphone.connect(filter);
-  			filter.connect(context.destination);
-		}, onFail);
-
-		</script>
 		
 	</body>
 </html>
