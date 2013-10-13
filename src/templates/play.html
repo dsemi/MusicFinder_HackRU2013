@@ -3,8 +3,8 @@
   <head>
     <script src="//www.rdio.com/api/api.js?client_id=VbZ4G9Z-2iTpsUomxNh68w"></script>
     <script type="text/javascript">
-      var trackName = '{{ trackData["title"] }}';
-      var artist = '{{ trackData["artist"]["name"] }}';
+      var trackName = '{{ trackData["track"] }}';
+      var artist = '{{ trackData["artist"] }}';
 
       var playSong = function () {
       R.request({
@@ -41,7 +41,7 @@
 
       document.write("<strong>You're listening to</strong>");
       document.write(top.trackName + " by " + top.artist);
-      <img src=top.icon/>
+      <img src="top.icon"/>
 
     </script>
   </head>
