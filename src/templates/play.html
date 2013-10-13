@@ -17,7 +17,7 @@
                 success: function(response) {
                   var length = response.result.results;
                   for (var i = 0; i < length; i++) {
-                    R.player.queue.add({source: response.result.results[i].key});
+                    R.player.queue.add(response.result.results[i].key);
                   }
                   R.player.nextSource();
                   R.player.play();
