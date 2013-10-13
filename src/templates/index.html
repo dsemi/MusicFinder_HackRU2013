@@ -143,7 +143,7 @@ AJAX.prototype = {
 		return result;
 	}
 }
-var final_transcript = '';
+        var final_transcript = '';
 	var recognizing = false;
 	var ignore_onend;
 	var start_timestamp;
@@ -201,7 +201,7 @@ var final_transcript = '';
 	      showButtons('inline-block');
 	    }
 	    var transJSON = {
-	    	"lyrics": final_transcript
+	    	lyrics: final_transcript
 	    };
             var dataReq = new AJAX('/');
             dataReq.onSuccess = function(response) {
