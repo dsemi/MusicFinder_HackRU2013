@@ -41,13 +41,8 @@
       document.write("<strong>You're listening to </strong>");
       document.write(top.trackName + " by " + top.artist);
       
-      var img = document.createElement("img");
-      img.onload = function(e) {
-	      var container = document.getElementById("imageContainer");
-	    container.appendChild(e.target);
-      }
-      img.setAttribute("src",top.icon400);
-      
+      var img = new Image;
+      img.src = top.icon400;
       
     </script>
   </head>
