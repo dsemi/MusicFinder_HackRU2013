@@ -155,11 +155,14 @@
 	    if (final_transcript || interim_transcript) {
 	      showButtons('inline-block');
 	    }
+	    var transJSON = {
+	    	lyrics: final_transcript
+	    };
 	    $.ajax({
 	    	type: 'POST',
 	    	url: '/',
-	    	dataType: 'text',
-	    	data: final_transcript,
+	    	dataType: 'json',
+	    	data: transJSON,
 	    	success: function(response) {
 	    	}
 	    })
