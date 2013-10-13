@@ -15,10 +15,11 @@
                         query: trackName + ", " + artist
                 },
                 success: function(response) {
-                        var top = response.result.results[0];
-                        for (var song in response.result.results)
-                          R.player.queue.add({source: song.key});
-                        R.player.play({source: top.key});
+                  var length = response.result.results;
+                  for (var i = 0; i < length; i++) {
+                    R.player.queue.add({source: response.result.results[i].key});
+                  }
+                  R.player.play();
                 },
                 error: function(response) {
                         console.log("error: " + response.message);
