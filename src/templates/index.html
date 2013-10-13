@@ -96,9 +96,54 @@
 	  <span id="final_span" class="final"></span>
 	  <span id="interim_span" class="interim"></span>
 	</div>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
-	var final_transcript = '';
+	function AJAX(url) {
+	this.url = url;
+	this.request = new XMLHttpRequest();
+}
+
+AJAX.prototype = {
+	url : null,
+	request : null,
+
+	onSuccess : function() {
+		console.log('Connection SUCCESS');
+	},
+
+	onFail : function() {
+		console.log('Connection FAIL')
+	},
+
+	send : function(method, name, params) {
+		var url, self;
+		url = this.url.concat(name);
+		self = this;
+
+		this.request.onreadystatechange = function() {
+			if (this.readyState === 4) {
+				if (this.status === 200) {
+					self.onSuccess(this.responseText);
+				} else {
+					self.onFail(this.responseText);
+				}
+			}
+		};
+
+		this.request.open(method, url.concat('?', this._formatParams(params)));
+		this.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		this.request.send();
+	},
+
+	_formatParams : function(params) {
+		var result = '';
+		for (var param in params) {
+			result = result.concat(param, '=', encodeURI(params[param]), '&');
+		}
+
+		return result;
+	}
+}
+var final_transcript = '';
 	var recognizing = false;
 	var ignore_onend;
 	var start_timestamp;
@@ -158,18 +203,14 @@
 	    var transJSON = {
 	    	"lyrics": final_transcript
 	    };
-	    $.ajax({
-	    	type: 'POST',
-	    	url: "{{ url_for('/') }}",
-			dataType: 'json',
-	    	data: JSON.stringify(transJSON, null, "\t"),
-	    	success: function(response) {
-				alert("success");
-	    	},
-	    	error: function(resp) {
-	    		console.log(resp);
-	    	}
-	    });
+            var dataReq = new AJAX('/');
+            dataReq.onSuccess = function(response) {
+               window.location.href = 'http://ec2-54-227-140-106.compute-1.amazonaws.com/play.html';
+            }
+            dataReq.onFail = function() {
+               console.log('error with request');
+            }
+            dataReq.send('POST', '', transJSON)
 	  }
 	}
 

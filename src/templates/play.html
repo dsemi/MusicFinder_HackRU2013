@@ -6,10 +6,8 @@
       var trackName = '{{ trackData["title"] }}';
       var artist = '{{ trackData["artist"]["name"] }}';
 
-      R.ready(function() {
-        if(!R.authenticated()) R.authenticate(function (authenticated) {
-          if (authenticated) {
-            R.request({
+      var playSong = function () {
+      R.request({
                 method: "search",
                 content: {
                         types: "Track",
@@ -25,8 +23,19 @@
                         console.log("error: " + response.message);
                 }
             });
+      };
+
+      R.ready(function() {
+        if(!R.authenticated()) {
+          R.authenticate(function (authenticated) {
+          if (authenticated) {
+            playSong();
           }
         });
+      }
+      else {
+          playSong();
+      }
         
       });
 
